@@ -15,46 +15,26 @@ router.get("/register", function(req, res){
   res.render("register");
 });
 
-// handle signup logic
-router.post("/register", function(req, res) {
-    const captcha = req.body["g-recaptcha-response"];
-    if (!captcha) {
-      console.log(req.body);
-      req.flash("error", "Please select captcha");
-      return res.redirect("/register");
+router.post("/register", function(req, res){
+  var newUser = new User({
+    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email
+  });
+  
+  User.register(newUser, req.body.password, function(err, user){
+    if(err){
+      console.log(err.message);
+      //req.flash("error", {"error": err.message});
+      return res.render("register", {"error": err.message});
     }
-    // secret key
-    var secretKey = process.env.CAPTCHA;
-    // Verify URL
-    var verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captcha}&remoteip=${req.connection.remoteAddress}`;
-    // Make request to Verify URL
-    req.get(verifyURL, (err, response, body) => {
-      // if not successful
-      if (body.success !== undefined && !body.success) {
-        req.flash("error", "Captcha Failed");
-        return res.redirect("/register");
-      }
-
-      var newUser = new User({
-        username: req.body.username,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-      });
-      
-      User.register(newUser, req.body.password, function(err, user) {
-        if (err) {
-          console.log(err.message);
-          return res.render("register", { error: err.message });
-        }
-        passport.authenticate("local")(req, res, function() {
-          req.flash("success", "Welcome to YelpCamp " + user.username);
-          res.redirect("/campgrounds");
-        });
-      });
-     });
-   });
-
+    passport.authenticate("local")(req, res, function(){
+      req.flash("success", "Welcome to YelpCamp " + user.username);
+      res.redirect("/campgrounds");
+    });
+  });
+});
 
 //login
 router.get("/login", function(req,res){
