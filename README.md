@@ -2,6 +2,8 @@
 
 Yelpcamp is a campground rating app, where users can create their own campgrounds, view and comment on others' campgrounds.
 
+[YelpCamp](https://rocky-beyond-31520.herokuapp.com/)
+
 ### Prerequisites
 
 What things you need to install the software and how to install them
@@ -19,10 +21,6 @@ A step by step series of examples that tell you how to get a development env run
 npm install
 node app.js
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
