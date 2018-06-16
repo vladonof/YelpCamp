@@ -36,9 +36,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* **Vlad Onofrei** - *Initial work* - [vladonof](https://github.com/vladonof)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Vlad Onofrei** - [vladonof](https://github.com/vladonof)
 
 ## License
 
