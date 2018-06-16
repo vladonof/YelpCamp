@@ -1,10 +1,6 @@
 # Yelp-Camp
 
-One Paragraph of project description goes here
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Yelpcamp is a campground rating app, where users can create their own campgrounds, view and comment on others' campgrounds.
 
 ### Prerequisites
 
